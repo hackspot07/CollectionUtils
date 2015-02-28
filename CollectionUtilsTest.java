@@ -14,6 +14,12 @@ class ListFilter implements PredicateAble<Integer>{
 	}
 };
 
+class ListReducer implements ReduceAble<Integer,Integer>{
+	public Integer reducer(Integer intial,Integer item){
+		return intial + item;
+	}
+}
+
 public class CollectionUtilsTest{
 	@Test
 	public void CollectionUtilsListMApperRturnAlist(){
@@ -37,5 +43,17 @@ public class CollectionUtilsTest{
 		assertEquals(newlist.size(),2);
 		int first = newlist.get(0);
 		assertEquals(first,3);
+	}
+
+	@Test
+	public void CollectionUtilsListReducerRturnA10(){
+		List<Integer> list = new ArrayList<Integer>();
+		ReduceAble<Integer,Integer> op = new ListReducer(); 
+		for(int i=0; i<5; i++){
+			list.add(i);
+		}
+		Integer intial = 5;
+		int finalValue = CollectionUtils.<Integer,Integer>reduce(list,op,intial);
+		assertEquals(finalValue,15);
 	}
 };	

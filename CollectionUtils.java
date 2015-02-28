@@ -8,6 +8,10 @@ interface PredicateAble<E>{
 	public boolean predicate(E element);
 }
 
+interface ReduceAble<E,K>{
+	public K reducer(K initial,E second);
+}
+
 public class CollectionUtils{
 	public static <E,K> List<K> map(List<E> list,OperateAble op){
 		List<K> newlist = new ArrayList<K>();
@@ -24,6 +28,13 @@ public class CollectionUtils{
 				newlist.add(item);
 		} 
 		return newlist;
+	}
+
+	public static <E,K> K reduce(List<E> list,ReduceAble ob, K initial){
+		for(E item: list){
+			initial = (K)ob.reducer(initial,item);
+		}
+		return initial;
 	}
 
 };
