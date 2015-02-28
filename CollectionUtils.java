@@ -1,7 +1,7 @@
 import java.util.*;
 
-interface OperateAble<E>{
-	public E operate(E element);
+interface OperateAble<E,K>{
+	public K operate(E element);
 }
 
 interface PredicateAble<E>{
@@ -9,10 +9,10 @@ interface PredicateAble<E>{
 }
 
 public class CollectionUtils{
-	public static <E> List<E> map(List<E> list,OperateAble op){
-		List<E> newlist = new ArrayList<E>();
+	public static <E,K> List<K> map(List<E> list,OperateAble op){
+		List<K> newlist = new ArrayList<K>();
 		for(E item: list){
-			newlist.add((E)(op.operate(item)));
+			newlist.add((K)(op.operate(item)));
 		}
 		return newlist;
 	}
@@ -25,4 +25,5 @@ public class CollectionUtils{
 		} 
 		return newlist;
 	}
+
 };
