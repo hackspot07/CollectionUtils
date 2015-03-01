@@ -36,11 +36,17 @@ class Database{
 public class Directpath{
 	static Map<Source, Destination> db = Database.createDbDatabase();
 	public static String path(String source,String destination){
-		int count = 0;
+		int keyCount = 0,valCount = 0;
 		for(Source s : db.keySet()){
 			if(s.getName()==source && db.get(s).getName()==destination)
 				return "true";
+			keyCount = checkForCount(s.getName(),source,keyCount);
+			valCount = checkForCount(db.get(s).getName(),destination,valCount);
 		}
-		return "false";
+		return (keyCount==db.keySet().size()) ? "no source city" : (valCount==db.keySet().size()) ? "no dst city" : "false";
+	}
+
+	private static int checkForCount(String first,String second,int count){
+		return (first!=second) ? ++count : count;
 	}	
 };
