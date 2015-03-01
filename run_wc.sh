@@ -8,5 +8,5 @@ if [ $? != 0 ]
 fi
 echo "running tests.."
 java -cp ".;junit-4.10.jar" org.junit.runner.JUnitCore CollectionUtilsTest
-
+java -cp ".;junit-4.10.jar" org.junit.runner.JUnitCore PathTest
 echo $?
