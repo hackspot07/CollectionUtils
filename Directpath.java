@@ -38,15 +38,16 @@ public class Directpath{
 	public static String path(String source,String destination){
 		int keyCount = 0,valCount = 0;
 		for(Source s : db.keySet()){
-			if(s.getName()==source && db.get(s).getName()==destination)
+			if(s.getName().equals(source) && db.get(s).getName().equals(destination))
 				return "true";
 			keyCount = checkForCount(s.getName(),source,keyCount);
 			valCount = checkForCount(db.get(s).getName(),destination,valCount);
 		}
-		return (keyCount==db.keySet().size()) ? "no source city" : (valCount==db.keySet().size()) ? "no dst city" : "false";
+		return (keyCount==db.keySet().size()) ? "No City Named "+source : 
+				(valCount==db.keySet().size()) ? "No City Named "+destination  : "false";
 	}
 
 	private static int checkForCount(String first,String second,int count){
-		return (first!=second) ? ++count : count;
+		return (!first.equals(second)) ? ++count : count;
 	}	
 };

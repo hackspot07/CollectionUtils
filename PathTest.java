@@ -17,11 +17,11 @@ public class PathTest{
 	@Test 
 	public void pathWillReturnNocityAsGivenSource(){
 		String getPathStatus  = Directpath.path("Mumbai","Seoul");
-		assertEquals(getPathStatus,"no source city");
+		assertEquals(getPathStatus, "No City Named Mumbai");
 	}
 	@Test 
 	public void pathWillReturnNocityAsGivenDestination(){
 		String getPathStatus  = Directpath.path("Bangalore","Mumbai");
-		assertEquals(getPathStatus,"no dst city");
+		assertEquals(getPathStatus,"No City Named Mumbai");
 	}
 };
