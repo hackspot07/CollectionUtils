@@ -20,7 +20,7 @@ public class PathTest{
 			Directpath.path("Mumbai","Seoul");
 		}catch(Exception e){
 			System.out.println(e.getMessage());
-			assertEquals(e.getMessage(), "No city Named Mumbai OR Seoul");
+			assertEquals(e.getMessage(), "No city Named Mumbai");
 		}
 	}
 	@Test 
@@ -28,7 +28,7 @@ public class PathTest{
 		try{
 			Directpath.path("Bangalore","Mumbai");
 		}catch(Exception e){
-			assertEquals(e.getMessage(), "No city Named Bangalore OR Mumbai");
+			assertEquals(e.getMessage(), "No city Named Mumbai");
 		}
 	}
 	@Test 
