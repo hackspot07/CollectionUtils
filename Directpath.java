@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 class Source {
 	private String name;
@@ -32,22 +33,21 @@ class Database{
 		return db;
 	}
 }
-
+class notCityException extends Exception {
+  	public notCityException(String message){
+    	super(message);
+  	}
+}
 public class Directpath{
 	static Map<Source, Destination> db = Database.createDbDatabase();
-	public static String path(String source,String destination){
-		int keyCount = 0,valCount = 0;
+	public static boolean path(String source,String destination)throws Exception{
 		for(Source s : db.keySet()){
 			if(s.getName().equals(source) && db.get(s).getName().equals(destination))
-				return "true";
-			keyCount = checkForCount(s.getName(),source,keyCount);
-			valCount = checkForCount(db.get(s).getName(),destination,valCount);
+				return true;
 		}
-		return (keyCount==db.keySet().size()) ? "No City Named "+source : 
-				(valCount==db.keySet().size()) ? "No City Named "+destination  : "false";
+ 		if(true){
+			throw new Exception("No city Named "+source + " OR " + destination);
+		}
+		return false;
 	}
-
-	private static int checkForCount(String first,String second,int count){
-		return (!first.equals(second)) ? ++count : count;
-	}	
 };
