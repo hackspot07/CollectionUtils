@@ -46,4 +46,14 @@ public class PathTest{
 		boolean getPathStatus  = Path.path("Bangalore","Tokyo");
 		assertEquals(getPathStatus,true);
 	}
+	@Test 
+	public void pathWillReturnTrueFromBangaloretoLucknow()throws Exception{
+		boolean getPathStatus  = Path.path("Bangalore","Lucknow");
+		assertEquals(getPathStatus,true);
+	}
+	@Test 
+	public void pathWillReturnTrueFromTokyotoBangalore()throws Exception{
+		boolean getPathStatus  = Path.path("Tokyo","Bangalore");
+		assertEquals(getPathStatus,true);
+	}
 };
