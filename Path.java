@@ -20,6 +20,9 @@ class Database{
 		List<String> beijing = new ArrayList<String>();
 		beijing.add("Tokyo");
 		db.put("Beijing",beijing);	
+		List<String> pak = new ArrayList<String>();
+		pak.add("India");
+		db.put("Pak",pak);
 		return db;
 	}
 }
@@ -30,7 +33,7 @@ public class Path{
  		if(!isPresentSource(source,destination)){
 			throw new Exception("No city Named "+source);
 		}
-		return (hasPath(source,destination));
+		return hasPath(source,destination) ? true : hasPath(destination,source);
 	}
 
 	public static boolean isPresentSource(String src,String dst){
