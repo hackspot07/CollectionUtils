@@ -10,9 +10,9 @@ public class PathTest{
 		assertEquals(getPathStatus,true);
 	}
 	@Test 
-	public void pathWillReturnFalse()throws Exception{
+	public void pathWillReturntrue()throws Exception{
 		boolean getPathStatus  = Path.path("Bangalore","Seoul");
-		assertEquals(getPathStatus,false);
+		assertEquals(getPathStatus,true);
 	}
 	@Test 
 	public void pathWillReturnNocityAsGivenSource()throws Exception{
@@ -44,6 +44,6 @@ public class PathTest{
 	@Test 
 	public void pathWillReturnTrueFromBangaloretoTokyo()throws Exception{
 		boolean getPathStatus  = Path.path("Bangalore","Tokyo");
-		assertEquals(getPathStatus,"true");
+		assertEquals(getPathStatus,true);
 	}
 };
