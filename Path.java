@@ -37,14 +37,16 @@ public class Path{
  		if(!isPresentSource(source,destination)){
 			throw new Exception("No city Named "+source);
 		}
-		boolean result = hasPath(source,destination) ? true : hasPath(destination,source);
+		boolean destinationStatus = isDestinationKey(destination);
+		destination  = (destinationStatus) ? destination : getKey(destination);
+		boolean result = hasPath(source,destination) ? true : hasPath(destination,source); 
 		visitedPath.clear();
 		return result;
 	}
 
 	public static boolean isPresentSource(String src,String dst){
 		for(String s : db.keySet()){
-			if(db.get(s).contains(dst) || db.containsKey(src) ||db.get(s).contains(src))
+			if(db.get(s).contains(dst) || db.containsKey(src) || db.get(s).contains(src))
 				return true;
 		}
 		return false;
@@ -67,6 +69,19 @@ public class Path{
 			}	
 		}; 
 		return false;
+	}
+
+	public static boolean isDestinationKey(String dst){
+		return db.containsKey(dst);
+	}
+
+	public static String getKey(String value){
+		for(String key: db.keySet()){
+			if(db.get(key).contains(value)){
+				return key;
+			}
+		}
+		return null;
 	}
 
 };
