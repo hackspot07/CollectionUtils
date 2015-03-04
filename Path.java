@@ -34,18 +34,22 @@ public class Path{
     private static ArrayList<String> root = new ArrayList<String>();
 
 	public static boolean path(String source,String destination)throws Exception{
- 		if(!isPresentSource(source,destination)){
+ 		if(!isPresentCities(source)){
 			throw new Exception("No city Named "+source);
 		}
+		if(!isPresentCities(destination)){
+			throw new Exception("No city Named "+destination);
+		}
+	
 		destination  = (db.containsKey(destination)) ? destination : getKey(destination);
 		boolean result = hasPath(source,destination) ? true : hasPath(destination,source); 
 		visitedPath.clear();
 		return result;
 	}
 
-	public static boolean isPresentSource(String src,String dst){
+	public static boolean isPresentCities(String src){
 		for(String s : db.keySet()){
-			if(db.get(s).contains(dst) || db.containsKey(src) || db.get(s).contains(src))
+			if(db.get(s).contains(src) || db.containsKey(src))
 				return true;
 		}
 		return false;
