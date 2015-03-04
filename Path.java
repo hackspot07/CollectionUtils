@@ -34,16 +34,21 @@ public class Path{
     private static ArrayList<String> root = new ArrayList<String>();
 
 	public static boolean path(String source,String destination)throws Exception{
+		boolean result;
  		if(!isPresentCities(source)){
 			throw new Exception("No city Named "+source);
 		}
 		if(!isPresentCities(destination)){
 			throw new Exception("No city Named "+destination);
 		}
-	
-		destination  = (db.containsKey(destination)) ? destination : getKey(destination);
-		boolean result = hasPath(source,destination) ? true : hasPath(destination,source); 
-		visitedPath.clear();
+		source = madeKey(source);
+		if(hasPath(source,destination)){
+			result = true;
+		}else{
+			destination = madeKey(destination);
+			result = hasPath(destination,source);
+		} 
+		root.clear();
 		return result;
 	}
 
@@ -81,6 +86,10 @@ public class Path{
 			}
 		}
 		return null;
+	}
+
+	public static String madeKey(String source){
+		return (db.containsKey(source)) ? source : getKey(source);
 	}
 
 };
