@@ -37,8 +37,7 @@ public class Path{
  		if(!isPresentSource(source,destination)){
 			throw new Exception("No city Named "+source);
 		}
-		boolean destinationStatus = isDestinationKey(destination);
-		destination  = (destinationStatus) ? destination : getKey(destination);
+		destination  = (db.containsKey(destination)) ? destination : getKey(destination);
 		boolean result = hasPath(source,destination) ? true : hasPath(destination,source); 
 		visitedPath.clear();
 		return result;
@@ -69,10 +68,6 @@ public class Path{
 			}	
 		}; 
 		return false;
-	}
-
-	public static boolean isDestinationKey(String dst){
-		return db.containsKey(dst);
 	}
 
 	public static String getKey(String value){
