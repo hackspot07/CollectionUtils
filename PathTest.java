@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 
 public class PathTest{
 	@Test 
-	public void pathWillReturnTrue()throws Exception{
+	public void pathWillReturnTruefromBangaloreToSingapore()throws Exception{
 		boolean getPathStatus  = Path.path("Bangalore","Singapore");
 		assertEquals(getPathStatus,true);
 	}
 	@Test 
-	public void pathWillReturntrue()throws Exception{
+	public void pathWillReturntruefromBangaloreToSeoul()throws Exception{
 		boolean getPathStatus  = Path.path("Bangalore","Seoul");
 		assertEquals(getPathStatus,true);
 	}

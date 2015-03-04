@@ -28,12 +28,18 @@ class Database{
 }
 
 public class Path{
-	static Map<String, List<String>> db = Database.createDbDatabase();
+	private static Map<String, List<String>> db = Database.createDbDatabase();
+
+	private static ArrayList<String> visitedPath = new ArrayList<String>();
+    private static ArrayList<String> root = new ArrayList<String>();
+
 	public static boolean path(String source,String destination)throws Exception{
  		if(!isPresentSource(source,destination)){
 			throw new Exception("No city Named "+source);
 		}
-		return hasPath(source,destination) ? true : hasPath(destination,source);
+		boolean result = hasPath(source,destination) ? true : hasPath(destination,source);
+		visitedPath.clear();
+		return result;
 	}
 
 	public static boolean isPresentSource(String src,String dst){
@@ -44,12 +50,18 @@ public class Path{
 		return false;
 	}
 
-	public static boolean hasPath(String source,String destination){ 
+	public static boolean hasPath(String source,String destination){
+		visitedPath.add(source); 
 		List<String> list = db.get(source);
 		if(list!=null){
+			if(list.contains(destination)){ 
+				root.add(destination);
+				System.out.println(root);
+				return true;
+			}
 			for(String src : db.get(source)){
-				if(list.contains(destination))
-					return true;
+				if(!visitedPath.contains(src))
+                	root.add(src);
 				if(hasPath(src,destination))
 					return true;
 			}	
